@@ -3,21 +3,14 @@ from flask import Flask, render_template, request, redirect, url_for
 import pickle, os
 from . import common
 from dbio import MailIO
+from .tools import read_md
 
-mails_bp = Blueprint('mails', __name__)
+mails_bp = Blueprint("mails", __name__)
 
 class MailsPage:
     query_dict = {}
     mail_data = None
     column_names = None
-
-    def render_mails():
-        return render_template(
-            "mails.html",
-            mails=MailsPage.mail_data,
-            column_names=MailsPage.column_names,
-            query_names=MailsPage.query_dict.keys(),
-        )
 
     @staticmethod
     def save_query_pickle():
@@ -33,7 +26,21 @@ class MailsPage:
     @mails_bp.route("/mails", methods=["GET", "POST"])
     def mails():
         MailsPage.load_query_pickle()
-        return MailsPage.render_mails()
+
+        if request.method == "POST":
+            addresses = request.form.getlist("address")
+            content = request.form["content"]
+            for address in addresses:
+                MailIO.send_mail("President", address, content)
+
+        return render_template(
+            "mails.html",
+            mails=MailsPage.mail_data,
+            column_names=MailsPage.column_names,
+            query_names=MailsPage.query_dict.keys(),
+            addresses=MailIO.get_address_book(),
+            md=read_md("mails"),
+        )
 
     @mails_bp.route("/mails-save-query", methods=["POST"])
     def save_query():
@@ -42,7 +49,7 @@ class MailsPage:
         if query_name and sql:
             MailsPage.query_dict[query_name] = sql
             MailsPage.save_query_pickle()
-        return MailsPage.render_mails()
+        return redirect(url_for('mails.mails'))
 
     @mails_bp.route("/mails-execute-saved-query", methods=["POST"])
     def execute_saved_query():
@@ -50,7 +57,7 @@ class MailsPage:
         if selected_query_name in MailsPage.query_dict:
             sql = MailsPage.query_dict[selected_query_name]
             MailsPage.mail_data, MailsPage.column_names = MailIO.exec_sql(sql)
-        return MailsPage.render_mails()
+        return redirect(url_for('mails.mails'))
 
     @mails_bp.route("/mails-delete-query", methods=["POST"])
     def delete_query():
@@ -58,4 +65,4 @@ class MailsPage:
         if selected_query_name in MailsPage.query_dict:
             del MailsPage.query_dict[selected_query_name]
             MailsPage.save_query_pickle()
-        return MailsPage.render_mails()
+        return redirect(url_for('mails.mails'))

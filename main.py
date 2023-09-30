@@ -14,7 +14,6 @@ def run_server():
 
 def main():
     webbrowser.open("http://127.0.0.1:5000")
-    openaiIO.openaiIO.init_openai()
 
     while True:
         if MailIO.exist_any_mails():

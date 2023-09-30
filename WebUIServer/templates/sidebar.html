@@ -1,38 +1,20 @@
 <!-- sidebar.html -->
+
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 </head>
 <div id="sidebar">
-    <div class="sidebar-header">
-        <h2>Mamagoto.inc</h2>
-    </div>
-    <div class="section">
-        <h3>Getting Start</h3>
-        <table class="sidebar-menu">
-            <tr>
-              <td>STEP0:</td>
-              <td><a href="{{url_for('index')}}">ホーム</a></td>
-            </tr>
-            <tr>
-              <td>STEP1:</td>
-              <td><a href="{{url_for('departments.departments')}}">部門設立・部門管理</a></td>
-            </tr>
-            <tr>
-              <td>STEP2:</td>
-              <td><a href="{{url_for('registration-page.registration_page')}}">採用</a></td>
-            </tr>
-            <tr>
-              <td>STEP3:</td>
-              <td><a href="{{url_for('send-mail-page.send_mail')}}">メール送信</a></td>
-            </tr>
-          </table>
-    </div>
-    <div class="section">
-        <h3>Tools</h3>
-        <ul class="sidebar-menu">
-            <li><a href="{{url_for('mails.mails')}}">メールサーバ</a></li>
-            <li><a href="{{url_for('logs.logs')}}">ログ</a></li>
-            <li><a href="{{url_for('structure.structure')}}">従業員-部門リスト</a></li>
-        </ul>
-    </div>
+  <div class="sidebar-header">
+    <h2>Mamagoto.inc</h2>
+  </div>
+  <div class="section">
+    <h3>Menu</h3>
+    <ul class="sidebar-menu">
+      <li><a href="{{url_for('index')}}">ホーム</li>
+      <li><a href="{{url_for('departments.departments')}}">部門</a></li>
+      <li><a href="{{url_for('employee-page.employee_page')}}">従業員</a></li>
+      <li><a href="{{url_for('mails.mails')}}">メール</a></li>
+      <li><a href="{{url_for('logs.logs')}}">ログ</a></li>
+    </ul>
+  </div>
 </div>

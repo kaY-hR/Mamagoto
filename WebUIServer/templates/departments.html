@@ -11,6 +11,15 @@
     </div>
     <div id="content">
         {{ md }}
+
+        <div style="float: right; margin-bottom: 20px;">
+            <form method="POST" action="/departments/load-csv" enctype="multipart/form-data">
+                <label for='csv_file'>You Can Upload CSV File:</label>
+                <input type="file" name="csv_file" id="csv_file">
+                <input type='submit' value='Register'>
+            </form>
+        </div>
+
         <table id="db-table">
             <tr>
                 <th>ID</th>

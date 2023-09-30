@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from dbio import StructureIO, DepartmentIO
 from .tools import read_md
+import csv
+import io
 
 departments_bp = Blueprint('departments', __name__)
 
@@ -21,6 +23,15 @@ class DepartmentsPage:
             DepartmentIO.add_department(department_name, department_mission)
             print("部門が追加されました。")
 
+        return redirect(url_for("departments.departments"))
+    
+    @departments_bp.route("/departments/load-csv", methods=["POST"])
+    def load_csv():
+        filebuf = request.files.get('csv_file')
+        text_stream = io.TextIOWrapper(filebuf, encoding='utf-8')
+        for row in csv.reader(text_stream):
+            DepartmentIO.add_department(row[0], row[1])
+        
         return redirect(url_for("departments.departments"))
 
     @departments_bp.route("/departments/edit-department", methods=["POST"])

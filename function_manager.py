@@ -256,7 +256,6 @@ class FunctionManager:
     @staticmethod
     def get_address_book():
         try:
-            employee_department_list = StructureIO.get_employee_department_list()
-            return str([str(name) for name in employee_department_list])
+            return MailIO.get_address_book()
         except Exception as e:
             return f"An error occurred while getting the address book: {str(e)}"

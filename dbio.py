@@ -192,6 +192,12 @@ class MailIO:
             return False
         
     @staticmethod
+    def get_address_book():
+        addresses = StructureIO.get_employee_department_list()
+        addresses.append("all")
+        return addresses
+    
+    @staticmethod
     def exec_sql(sql: str):
         try:
             conn = sqlite3.connect(common.DB_PATH)

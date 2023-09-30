@@ -41,7 +41,6 @@ class Context:
             function_manager_response = FunctionManager.exec_func(function_name,json_arguments,staff)
 
             self.raw_context.append(function_manager_response)
-            Context.log("function",self.name, self.get_last_message())
             return self.post_message_with_function_calling(self.get_last_message(),staff)
 
         Context.log(self.name, "all", self.get_last_message())
@@ -63,13 +62,7 @@ class openaiIO:
     _dummy_mode = True
     
     STANDARD_DURATION_SEC_PER_TOKEN = 60/10000
-
-    @staticmethod
-    def init_openai():
-        if openaiIO._dummy_mode:
-            return
-        openai.api_key_path = "..\\api_key.txt"
-
+    
     @staticmethod
     def post_message_without_function_calling(context: list, message: str):
         return openaiIO.post_message(context, message, "none")
