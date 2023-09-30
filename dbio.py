@@ -1,5 +1,5 @@
 import sqlite3
-from WebUIServer import common
+import common
 from datetime import datetime
 
 

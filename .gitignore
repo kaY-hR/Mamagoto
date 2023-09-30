@@ -12134,3 +12134,5 @@ env/Lib/site-packages/urllib3-2.0.5.dist-info/WHEEL
 env/Lib/site-packages/urllib3-2.0.5.dist-info/licenses/LICENSE.txt
 .gitignore
 virtual_employee/__pycache__/file_maker_bot.cpython-310.pyc
+__pycache__/run_mamagoto.cpython-310.pyc
+__pycache__/run_server.cpython-310.pyc

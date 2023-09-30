@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import Flask, render_template, request, redirect, url_for
 import pickle, os
-from . import common
+import common
 from dbio import MailIO
 from .tools import read_md
 

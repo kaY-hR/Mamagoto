@@ -11,6 +11,22 @@
             "program": "main.py",
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "run_mamagoto.py",
+            "type": "python",
+            "request": "launch",
+            "program": "run_mamagoto.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "run_server.py",
+            "type": "python",
+            "request": "launch",
+            "program": "run_server.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }

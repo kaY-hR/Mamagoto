@@ -1,6 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
-import pickle, os
-from . import common
+from flask import Flask, render_template
 from .logs import logs_bp
 from .mails import mails_bp
 from .employee_registration import employee_bp

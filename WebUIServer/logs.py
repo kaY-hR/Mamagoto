@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import Flask, render_template, request, redirect, url_for
 import pickle, os
-from . import common
+import common
 import dbio
 
 logs_bp = Blueprint('logs', __name__)

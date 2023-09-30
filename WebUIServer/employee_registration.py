@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import Flask, render_template, request, redirect, url_for
 import pickle, os
-from . import common
+import common
 from virtual_employee.staff import Staff
 from virtual_employee.softbots import PersonalityGenerator
 from dbio import DepartmentIO, StructureIO
