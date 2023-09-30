@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mamagoto.inc</title>
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+</head>
+<body>
+    <div id="sidebar">
+    {% include 'sidebar.html' %}
+    </div>
+    <div id="content">
+        {{ md }}
+        <form method="POST" action="/register-page-register">
+            <label for='departments'>Departments:</label><br>
+            <select multiple id='departments' name='departments'>
+                {% for department in departments %}
+                    <option value="{{ department.name }}">{{ department.name }}</option>
+                {% endfor %}
+            </select><br>    
+            <label for='requirements'>Requirements:</label><br>
+            <input type='text' id='requirements' name='requirements'><br>
+            <input type='submit' value='Register'>
+        </form>
+    </div>
+</body>
+</html>

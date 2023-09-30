@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mamagoto.inc</title>
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div id="sidebar">
+        {% include 'sidebar.html' %}
+    </div>
+    <div id="content">
+        <h1>従業員-部門リスト</h1>
+
+        <form method="POST" action="/structure-save-query">
+            <table class="layout-table">
+                <tr>
+                    <td colspan="2">
+                        <h2>クエリを保存</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="query_name">クエリ名:</label>
+                        <input type="text" name="query_name" id="query_name" required>
+                    </td>
+                    <td>
+                        <label for="sql">SQL文:</label>
+                        <input type="text" name="sql" id="sql" required size="150" placeholder="SQL文を入力してください">
+                        <input type="submit" value="保存">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <table class="layout-table">
+            <tr>
+                <td>
+                    <h2>クエリを実行</h2>
+                    <form method="POST" action="/structure-execute-saved-query">
+                        <label for="selected_query_name">クエリを選択:</label>
+                        <select name="selected_query_name">
+                            {% for query_name in query_names %}
+                            <option>{{ query_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="実行">
+                    </form>
+                </td>
+                <td>
+                    <h2>クエリを削除</h2>
+                    <form method="POST" action="/structure-delete-query">
+                        <label for="selected_query_name">削除するクエリを選択:</label>
+                        <select name="selected_query_name">
+                            {% for query_name in query_names %}
+                            <option>{{ query_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="削除">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        {% if employees %}
+        <table id="db-table">
+            <tr>
+                {% for column in column_names %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in employees %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+
+</html>

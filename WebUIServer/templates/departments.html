@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+</head>
+
+<body>
+    <div id="sidebar">
+        {% include 'sidebar.html' %}
+    </div>
+    <div id="content">
+        {{ md }}
+        <table id="db-table">
+            <tr>
+                <th>ID</th>
+                <th>部門名称</th>
+                <th>ミッション・役割・規定</th>
+                <th>アクション</th>
+            </tr>
+            {% for department in departments %}
+            <tr>
+                <td>{{ department.id }}</td>
+                <td>{{ department.name }}</td>
+                <td>{{ department.mission }}</td>
+                <td>Edit</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="4">部門の追加</th>
+            </tr>
+            <tr>
+                <form method="POST" action="/departments/add-department">
+                    <td></td>
+                    <td>
+                        <input type="text" name="name" id="name" required>
+                    </td>
+                    <td>
+                        <textarea name="mission" id="mission" required></textarea>
+                    </td>
+                    <td>
+                        <input type="submit" value="Register">
+                    </td>
+                </form>
+            </tr>
+            <tr>
+                <th colspan="4">部門の編集</th>
+            </tr>
+            <tr>
+                <form method="POST" action="/departments/edit-department">
+                    <td>
+                        <select name="selected_department">
+                            {% for department in departments %}
+                            <option value="{{ department.id }}">{{ department.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="new_name" id="new_name" required>
+                    </td>
+                    <td>
+                        <textarea name="new_mission" id="new_mission" required></textarea>
+                    </td>
+                    <td>
+                        <input type="submit" value="Edit">
+                    </td>
+                </form>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
