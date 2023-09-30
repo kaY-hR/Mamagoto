@@ -20,10 +20,6 @@ This app uses the openai api to run a pseudo-organization by having multiple AIs
 
 ## How to Get Started
 
-1. 環境変数 "OPENAI_API_KEY "にOpenAI APIキーを設定する。
-2. PCを再起動します。
-3. main.pyを実行します。
-
 1. Set your OpenAI API key as the environment variable "OPENAI_API_KEY".
 2. Restart your PC.
 3. Execute main.py
