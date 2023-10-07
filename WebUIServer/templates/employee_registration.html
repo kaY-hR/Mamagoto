@@ -28,6 +28,14 @@
         <div class="content-right">
             <h1>従業員-部門リスト</h1>
 
+            <div style="float: right; margin-bottom: 20px;">
+                <form method="POST" action="/employee-page/load-csv" enctype="multipart/form-data">
+                    <label for='csv_file'>You Can Upload CSV File:</label>
+                    <input type="file" name="csv_file" id="csv_file">
+                    <input type='submit' value='Register'>
+                </form>
+            </div>
+
             <form method="POST" action="/employee-page/structure-save-query">
                 <table class="layout-table">
                     <tr>

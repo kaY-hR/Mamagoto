@@ -6,6 +6,8 @@ from virtual_employee.staff import Staff
 from virtual_employee.softbots import PersonalityGenerator
 from dbio import DepartmentIO, StructureIO
 from .tools import read_md
+import csv
+import io
 
 employee_bp = Blueprint("employee-page", __name__)
 
@@ -28,7 +30,8 @@ class RegistrationPage:
 
     @employee_bp.route("/employee-page/register", methods=["POST"])
     def register():
-        staff = Staff(PersonalityGenerator.generate_personality_traits())
+        #staff = Staff(PersonalityGenerator.generate_personality_traits())
+        staff = Staff()
         selected_departments = request.form.getlist("departments")
         StructureIO.insert_employee_departments(staff.name, selected_departments)
 
@@ -44,7 +47,25 @@ class RegistrationPage:
 
         staff.activate()
         return employee_page()
-
+    
+    @employee_bp.route("/employee-page/load-csv", methods=["POST"])
+    def load_csv():
+        filebuf = request.files.get('csv_file')
+        text_stream = io.TextIOWrapper(filebuf, encoding='utf-8')
+        for row in csv.reader(text_stream):
+            staff = Staff()
+            departments = row[0].split('\n')
+            staff.add_instructions(
+                "You are the person who meets the following requirements:"
+                + row[1]
+            )
+            for department in departments:
+                mission = DepartmentIO.get_mission_by_name(department)
+                staff.add_instructions(f"You belong to the {department} Department. The mission of this department is:\n{mission}")
+            staff.activate()
+            StructureIO.insert_employee_departments(staff.name, departments)
+        
+        return employee_page()
 
 class StructurePage:
     query_dict = {}
