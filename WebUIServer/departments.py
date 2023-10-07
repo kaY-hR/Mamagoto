@@ -34,12 +34,4 @@ class DepartmentsPage:
         
         return redirect(url_for("departments.departments"))
 
-    @departments_bp.route("/departments/edit-department", methods=["POST"])
-    def edit_department():
-        selected_department_id = int(request.form.get("selected_department"))
-        new_name = request.form.get("new_name")
-        new_mission = request.form.get("new_mission")
-        if new_name and new_mission:
-            DepartmentIO.update_department(selected_department_id, new_name, new_mission)
-        return redirect(url_for("departments.departments"))
 
