@@ -32,6 +32,8 @@ def init_database():
     DepartmentIO.create_department_table() 
 
 def run_mamagoto():
+    init_storage()
+    init_database()
     while True:
         if MailIO.exist_any_mails():
             for staff in Staff.staff_list.values():
@@ -41,6 +43,4 @@ def run_mamagoto():
             time.sleep(3)
 
 if __name__ == "__main__":
-    init_storage()
-    init_database()
     run_mamagoto()
