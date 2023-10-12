@@ -8,7 +8,7 @@
 * 従業員にメールで指示をする
 * 従業員が、自部門の規定に従いつつ、あなたの指示を遂行する
 
-# Demo
+## Demo
 
 こちらにデモアプリをデプロイしています。
 https://mamagoto-demo-jtvavtpuha-dt.a.run.app/
