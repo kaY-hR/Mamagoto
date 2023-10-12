@@ -10,8 +10,8 @@
 
 ## Demo
 
-こちらにデモアプリをデプロイしています。
-https://mamagoto-demo-jtvavtpuha-dt.a.run.app/
+こちらにデモアプリをデプロイしています。  
+https://mamagoto-demo-jtvavtpuha-dt.a.run.app/  
 デモのため従業員の採用はできず、従業員が動くことはありませんが、ログ・メール・部門設立はできます。
 
 ## How to Get Started
