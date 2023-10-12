@@ -8,6 +8,12 @@
 * 従業員にメールで指示をする
 * 従業員が、自部門の規定に従いつつ、あなたの指示を遂行する
 
+# Demo
+
+こちらにデモアプリをデプロイしています。
+https://mamagoto-demo-jtvavtpuha-dt.a.run.app/
+デモのため従業員の採用はできず、従業員が動くことはありませんが、ログ・メール・部門設立はできます。
+
 ## How to Get Started
 
 1. 環境変数 "OPENAI_API_KEY "にOpenAI APIキーを設定する。
